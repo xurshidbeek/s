@@ -1,0 +1,67 @@
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'home' %}" ●>Online Store</a>
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+        >
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                {% if request.user.is_authenticated %}
+                    <!-- Kategoriyalar faqat tizimga kirgan foydalanuvchilar uchun -->
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="{% url 'categories' %}">
+                            <i class="bi bi-layers-fill"></i>
+                            Categories
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center gap-1" aria-current="page" href="{% url 'account' user_id=request.user.id %}">
+                            <i class="bi bi-person"></i>
+                            Account
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center gap-1" aria-current="page" href="{% url 'cart' %}">
+                            <i class="bi bi-cart4"></i>
+                            My Cart
+                        </a>
+                    </li>
+                    <!-- Logout bo'limi -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                    </li>
+                {% else %}
+                    <!-- Tizimga kirilmagan foydalanuvchilar uchun Login/Register bo'limi -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'registration' %}">Login / Register</a>
+                    </li>
+                {% endif %}
+            </ul>
+            <div class="d-flex align-items-center gap-2">
+                <form class="d-flex" role="search" method="POST" action="">
+                    {% csrf_token %}
+                    <input
+                        class="form-control me-2"
+                        type="search"
+                        value="{{ search }}"
+                        id='search-query'
+                        placeholder="Search"
+                        aria-label="Search"
+                    />
+                    <button class="btn btn-outline-light" type="submit">
+                        Search
+                    </button>
+                </form>
+            </div>
+       
+        </div>
+    </div>
+</nav>

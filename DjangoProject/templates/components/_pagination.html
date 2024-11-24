@@ -1,0 +1,33 @@
+<div class="d-flex justify-content-center mt-5">
+    <nav aria-label="Page navigation">
+        <ul class="pagination">
+            <!-- Previous Button -->
+            <li class="page-item {% if not page_obj.has_previous %}disabled{% endif %}">
+                <a class="page-link text-dark" href="{% if page_obj.has_previous %}?page={{ page_obj.previous_page_number }}{% else %}#!{% endif %}">
+                    &laquo; Prev
+                </a>
+            </li>
+
+            <!-- Page Numbers -->
+            {% for page in custom_range %}
+            <li class="page-item {% if page == page_obj.number %}active{% endif %}">
+                <a class="page-link {% if page == page_obj.number %}bg-dark text-white{% else %}text-dark{% endif %}" href="{% if page != page_obj.number %}?page={{ page }}{% else %}#!{% endif %}">
+                    {{ page }}
+                </a>
+            </li>
+            {% endfor %}
+
+            <!-- Next Button -->
+            <li class="page-item {% if not page_obj.has_next %}disabled{% endif %}">
+                <a class="page-link text-dark" href="{% if page_obj.has_next %}?page={{ page_obj.next_page_number }}{% else %}#!{% endif %}">
+                    Next &raquo;
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+<!-- Page Info -->
+<div class="text-center text-light mt-2">
+    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+</div>

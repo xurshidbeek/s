@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<main class="vh-100 bg-body-tertiary">
+    <div class="container m-auto mt-5 row gap-2 justify-content-center">
+        <h1 class="d-flex justify-content-center mb-5">Your account</h1>
+        <div class="d-flex justify-content-center gap-5">
+    <div class="w-50">
+        <form method="POST" action="">
+
+            {% csrf_token %}
+            <div class="d-flex flex-column gap-2">
+                <input
+                    type="text"
+                    class="form-control"
+                    name="first_name"
+                    value=""
+                    placeholder="{{ user.first_name }}"
+                />
+                <input
+                    type="text"
+                    class="form-control"
+                    name="last_name"
+                    value=""
+                    placeholder="{{ user.last_name }}"
+                />
+                <input
+                    type="email"
+                    class="form-control"
+                    name="email"
+                    value=""
+                    placeholder="{{ user.email }}"
+                />
+                <input
+                    type="password"
+                    class="form-control"
+                    name="password"
+                    placeholder="Password"
+                />
+                <input
+                    type="password"
+                    class="form-control"
+                    name="password_confirmation"
+                    placeholder="Password Confirmation"
+                />
+                <button class="btn btn-dark" type="submit">
+                    Update my information
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+    </div>
+</main>
+{% endblock content%}
